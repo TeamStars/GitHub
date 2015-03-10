@@ -1,0 +1,60 @@
+﻿<Window x:Class="MuiltClientTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:MuiltClientTest.VM"
+        Title="MainWindow" Height="500" Width="525">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="MinWidth" Value="100"></Setter>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <l:ConertString x:Key="conv"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+
+       
+            <Label>服务器地址:</Label>
+        <TextBox Grid.Column="1" Text="{Binding ServerAddress}"/>
+      
+      
+            <Label Grid.Row="0" Grid.Column="2">端口:</Label>
+        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Port,Converter={StaticResource conv}}"/>
+      
+       
+            <Label Grid.Row="1">开启客户端的个数:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ClientCount,Converter={StaticResource conv}}"/>
+
+          <Label Grid.Row="2">需要发送的内容：</Label>
+          <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SendData}"></TextBox>
+
+        <Label Grid.Row="3">接收到的内容：</Label>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ReviceData}"></TextBox>
+        
+        <Label Grid.Row="4">日志：</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible"  Text="{Binding Log,Mode=OneWay}"></TextBox>
+        
+        <Button Grid.Column="1" Grid.Row="5" Command="{Binding StartCmd}">开始</Button>
+        <Button Grid.Column="2" Grid.Row="5" Command="{Binding StopCmd}">结束</Button>
+    </Grid>
+</Window>
